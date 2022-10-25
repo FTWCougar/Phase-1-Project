@@ -4,6 +4,7 @@ const div = document.getElementById("quote-body")
 let limit = 10
 let i = 0
 
+
 const fetchQuotes = (tag) => {
     fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=${limit}`)
     .then(resp => resp.json())
@@ -82,14 +83,27 @@ const previewQuotes = (btn) => {
 
 const renderQuotes = (quoteArr) => {
     div.textContent = ''
+    
     quoteArr.forEach(quote =>{
         const p = document.createElement('p');
-        const h3 = document.createElement('h3')
+        const h2 = document.createElement('h2')
         p.textContent = quote.content;
-        h3.textContent = quote.author
-        div.append(h3,p)
+        h2.textContent = quote.author
+        const likeBtn = document.createElement('button');
+        likeBtn.textContent = 'Like'
+        const numberOfLikes = document.createElement('a');
+        let num = quote.length;
+        console.log(quote.length);
+        likeBtn.addEventListener('click',()=>{
+            num++
+            numberOfLikes.textContent = '  ' +num + `❤️`
+        })
+        numberOfLikes.textContent = '  '+num +  `❤️`
+        div.append(h2,p,likeBtn,numberOfLikes,);
+
     })
 }
+
 
 const init = () => {
     fetchTags()
