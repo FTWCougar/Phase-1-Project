@@ -1,7 +1,8 @@
-const happinessBtn = document.getElementById('happiness')
-const famousBtn = document.getElementById('famous')
+
+const navList = document.getElementById('quote-type')
 const div = document.getElementById("quote-body")
-const limit = 10
+let limit = 10
+let i = 0
 
 const fetchQuotes = (tag) => {
     fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=${limit}`)
@@ -11,16 +12,72 @@ const fetchQuotes = (tag) => {
         renderQuotes(quoteData.results)
     })
 }
+const fetchThreeQuotes = (tag) => {
+    limit = 3
+    fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=${limit}`)
+    .then(resp => resp.json())
+    .then(quoteData => {
+        console.log(quoteData.results)
+        renderQuotes(quoteData.results)
+        limit = 10
+    })
+}
 
-const eventListeners = () => {
-    happinessBtn.addEventListener('click', () => {
-        const tag = happinessBtn.textContent
-        fetchQuotes(tag)
+const fetchTags = () => {
+    fetch('https://api.quotable.io/tags')
+    .then(resp => resp.json())
+    .then(tagArr => {
+        console.log(tagArr)
+
+        tagArr.forEach(tag => {
+            if(tag.quoteCount !== 0){
+                console.log(tag)
+                createNav(tag)
+            }
+        }
+    )})
+    
+}
+
+const createNav = (tag) => {
+    const span = document.createElement('span')
+    const li = document.createElement('li')
+    const btn = document.createElement('button')
+    li.append(span)
+    btn.textContent = tag.name.toUpperCase()
+    btn.addEventListener('click', () => {
+        i++
+        btn.textContent = tag.name.toLowerCase()
+        displayQuotes(btn)
+        btn.textContent = tag.name.toUpperCase()
     })
-    famousBtn.addEventListener('click', () => {
-        const tag = famousBtn.textContent
-        fetchQuotes(tag)
+    span.addEventListener('mouseover', () => {
+        btn.textContent = tag.name.toLowerCase()
+        previewQuotes(btn)
+        btn.textContent = tag.name.toUpperCase()
     })
+    span.addEventListener('mouseout', () => {
+        if (i !== 1){
+            div.textContent =''
+        }else{
+            i = 0
+        }
+    })
+    console.log(li)
+    span.append(btn)
+    navList.append(span)
+
+}
+
+const displayQuotes = (btn) => {
+    console.log(btn.textContent)
+    const tag = btn.textContent
+    fetchQuotes(tag)
+}
+const previewQuotes = (btn) => {
+    console.log(btn.textContent)
+    const tag = btn.textContent
+    fetchThreeQuotes(tag)
 }
 
 const renderQuotes = (quoteArr) => {
@@ -35,6 +92,6 @@ const renderQuotes = (quoteArr) => {
 }
 
 const init = () => {
-    eventListeners()
+    fetchTags()
 }
 init()

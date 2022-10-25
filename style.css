@@ -1,0 +1,46 @@
+header {
+    float:center;
+    width: 225px;
+    height: auto;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+body {
+    background-color: gray;
+    height: 100%;
+    min-height: 100%;
+    
+}
+
+#quote-body {
+    position: relative;
+     /* left: 300px; */
+    top: -550; 
+    max-width: fit-content;
+    margin: auto;
+    width: 60%;
+    padding-bottom: 40px;
+}
+
+button{
+    background-color: aqua;
+    width:200px;
+    height: 50px;
+    
+}
+ul{
+    list-style: none;
+}
+
+#quote-type {
+    overflow: scroll;
+    height: 500px;
+    width: 215px;
+}
+p {
+    background-color: lightblue;
+}
+h3 {
+    background-color: lightcyan;
+}
