@@ -4,6 +4,7 @@ header {
     height: auto;
     padding: 10px;
     margin-right: 10px;
+    font-family: "copperplate";
 }
 
 body {
@@ -15,19 +16,21 @@ body {
 
 #quote-body {
     position: relative;
-     /* left: 300px; */
+    left: 200px;
     top: -550; 
     max-width: fit-content;
-    margin: auto;
+    margin: 10%;
+    margin-top: 0;
     width: 60%;
     padding-bottom: 40px;
 }
 
 button{
-    background-color: aqua;
+    background-color: salmon;
     width:200px;
     height: 50px;
-    
+    font-family: "";
+    font-weight: bold;
 }
 ul{
     list-style: none;
@@ -38,9 +41,13 @@ ul{
     height: 500px;
     width: 215px;
 }
+
 p {
     background-color: lightblue;
+    font-family: "copperplate", fantasy;
 }
+
 h3 {
     background-color: lightcyan;
+    font-family: "Lucida Handwriting", cursive ;
 }
