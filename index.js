@@ -24,6 +24,14 @@ const fetchThreeQuotes = (tag) => {
     })
 }
 
+const fetchAuthorQuotes = (author) => {
+    fetch(`https://api.quotable.io/quotes?author=${author}`)
+    .then(resp => resp.json())
+    .then(quoteData =>{
+        renderQuotes(quoteData.results)
+    })
+}
+
 const fetchTags = () => {
     fetch('https://api.quotable.io/tags')
     .then(resp => resp.json())
@@ -90,8 +98,10 @@ const renderQuotes = (quoteArr) => {
         p.textContent = quote.content;
         h2.textContent = quote.author
         const likeBtn = document.createElement('button');
+        likeBtn.id = "likeBtn"
         likeBtn.textContent = 'Like'
-        const numberOfLikes = document.createElement('a');
+        const numberOfLikes = document.createElement('h4');
+        numberOfLikes.id = "numLikes"
         let num = quote.length;
         console.log(quote.length);
         likeBtn.addEventListener('click',()=>{
@@ -99,13 +109,39 @@ const renderQuotes = (quoteArr) => {
             numberOfLikes.textContent = '  ' +num + `❤️`
         })
         numberOfLikes.textContent = '  '+num +  `❤️`
-        div.append(h2,p,likeBtn,numberOfLikes,);
+        div.append(h2,p,numberOfLikes,likeBtn);
 
     })
 }
 
+const imageQuote = () => {
+    const img1 = document.getElementById('img1')
+    const img2 = document.getElementById('img2')
+    const img3 = document.getElementById('img3')
+    const img4 = document.getElementById('img4')
+    let author = ""
+    img1.addEventListener('click', () => {
+        author = "Alan-Watts"
+        fetchAuthorQuotes(author)
+    })
+    img2.addEventListener('click', () => {
+        author = "Margaret-Mead"
+        fetchAuthorQuotes(author)
+    })
+    img3.addEventListener('click', () => {
+        author = "Michael-Jordan"
+        fetchAuthorQuotes(author)
+    })
+    img4.addEventListener('click', () => {
+        author = "Winston-Churchill"
+        fetchAuthorQuotes(author)
+    })
+}
+
+
 
 const init = () => {
     fetchTags()
+    imageQuote()
 }
 init()
