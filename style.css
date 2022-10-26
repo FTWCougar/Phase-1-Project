@@ -4,78 +4,83 @@ header {
     height: auto;
     padding: 10px;
     margin-right: 10px;
-    font-family: "copperplate";
+    font-family: “copperplate”;
+    text-align: right;
 }
-
 body {
     background-color: lightpink;
     height: 100%;
 }
-
 #quote-body {
     position: relative;
-    left: 300px;
-    top: -550; 
-    max-width: 700px;
-    margin: 10%;
+    top: -850;
+    width: 60%;
+    margin: 20%;
     margin-top: 0;
-    width: 80%;
     padding-bottom: 40px;
     text-align: center;
     font-size: x-large;
-
 }
-
 button{
     background-color: lightyellow;
     width:200px;
     height: 50px;
-    font-family: "";
+    font-family: “”;
     font-weight: bold;
 }
 ul{
     list-style: none;
 }
-
 #quote-type {
     overflow: scroll;
-    height: 500px;
-    width: 215px;
+    height: 60%;
+    width:fit-content;
 }
-
 p {
     padding: 5%;
     background-color: lightskyblue;
     text-align: center;
     border-radius: 50%;
-    font-family: "copperplate", fantasy;
+    font-family: “copperplate”, fantasy;
     font-size: x-large;
 }
-
 h2 {
-    
-    font-family: "Lucida Handwriting", cursive ;
+    text-align: center;
+    font-family: “Lucida Handwriting”, cursive ;
 }
 img{
-    width: 200px;
+    max-width: 200px;
     height: auto;
 }
-
 #image {
     float: right;
-  position: relative;
-  margin-top: -600px;
-
+    position: relative;
+    margin-top: -700px;
 }
-
-
 #likeBtn{
     text-align: center;
     position: relative;
     background-color: lightcyan;
 }
-
 #numLikes {
     text-align: center;
     position: relative;
+}
+@media(max-width: 1000px){
+    #quote-body {
+        position: relative;
+        top: 0;
+        width: 60%;
+        margin: 20%;
+        margin-top: 0;
+        padding-bottom: 40px;
+        text-align: center;
+        font-size: x-large;
+    }
+    #image {
+        float: right;
+        position: relative;
+        margin-top: -700px;
+        width: 15%;
+    }
 }

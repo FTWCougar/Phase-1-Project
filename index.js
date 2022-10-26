@@ -119,6 +119,7 @@ const imageQuote = () => {
     const img2 = document.getElementById('img2')
     const img3 = document.getElementById('img3')
     const img4 = document.getElementById('img4')
+    const img5 = document.getElementById('img5')
     let author = ""
     img1.addEventListener('click', () => {
         author = "Alan-Watts"
@@ -134,6 +135,10 @@ const imageQuote = () => {
     })
     img4.addEventListener('click', () => {
         author = "Winston-Churchill"
+        fetchAuthorQuotes(author)
+    })
+    img5.addEventListener('click', () => {
+        author = "Albert-Einstein"
         fetchAuthorQuotes(author)
     })
 }
