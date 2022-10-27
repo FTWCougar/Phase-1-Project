@@ -8,31 +8,46 @@ let interval = 0;
 //Fetches to the Database
 
 const fetchQuotes = (tag) => {
-    fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=${limit}`)
+    const fetchreq1 = fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=10`)
     .then(resp => resp.json())
-    .then(quoteData => {
-        console.log(quoteData.results);
-        buildStage(quoteData.results);
-    });
+    const fetchreq2 = fetch(`http://localhost:3000/quotes`)
+    .then(resp => resp.json())
+    const twoDatas = Promise.all([fetchreq1, fetchreq2])
+    twoDatas.then(res => {
+        const quoteArr = res[0].results
+        const localQArr = res[1]
+        console.log(quoteArr)
+        prepareData(quoteArr, localQArr);
+    })
 }
 
 const fetchThreeQuotes = (tag) => {
     limit = 3
-    fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=${limit}`)
+    const fetchreq1 = fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=3`)
     .then(resp => resp.json())
-    .then(quoteData => {
-        console.log(quoteData.results);
-        buildStage(quoteData.results);
+    const fetchreq2 = fetch(`http://localhost:3000/quotes`)
+    .then(resp => resp.json())
+    const twoDatas = Promise.all([fetchreq1, fetchreq2])
+    twoDatas.then(res => {
+        const quoteArr = res[0].results
+        const localQArr = res[1]
+        prepareData(quoteArr, localQArr);
         limit = 10
-    });
+    })
 }
 
 const fetchAuthorQuotes = (author) => {
-    fetch(`https://api.quotable.io/quotes?author=${author}`)
+    const fetchreq1 = fetch(`https://api.quotable.io/quotes?author=${author}`)
     .then(resp => resp.json())
-    .then(quoteData =>{
-        buildStage(quoteData.results);
-    });
+    const fetchreq2 = fetch(`http://localhost:3000/quotes`)
+    .then(resp => resp.json())
+    const twoDatas = Promise.all([fetchreq1, fetchreq2])
+    twoDatas.then(res => {
+        const quoteArr = res[0].results
+        const localQArr = res[1]
+        console.log(quoteArr)
+        prepareData(quoteArr, localQArr);
+    })
 }
 
 const fetchTags = () => {
@@ -89,15 +104,41 @@ const createBtnEvents = (tag, btn, span) => {
 
 //Creates elements for the page
 
-const buildStage = (quoteArr) => {
+const prepareData = (remoteQuotes, localQuotes) => {
     div.textContent = '';
-    quoteArr.forEach(quote =>{
-        const p = document.createElement('p');
-        const h2 = document.createElement('h2');
-        const likeBtn = document.createElement('button');
-        const numberOfLikes = document.createElement('h4');
-        let num = quote.length;
-        renderQuotes(quote, p, h2, likeBtn, numberOfLikes, num);
+    remoteQuotes.forEach(remoteQuote =>{
+        console.log(remoteQuote)
+        const quoteIndex = localQuotes.findIndex(localQuote => localQuote.id === remoteQuote._id)
+        let likeCount = 0;
+        if(quoteIndex === -1){
+            postLikes(likeCount, remoteQuote._id)
+
+        }else{
+            likeCount = localQuotes[quoteIndex].likes;
+        }
+        console.log(likeCount)
+        renderQuotes(remoteQuote, likeCount, localQuotes)
+    })
+}
+
+const postLikes = (likeCount, quoteId) => {
+    const likeObj = {
+        id: quoteId,
+        likes: likeCount
+    }
+    const postReqObj =  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept : 'application/json'
+        },
+        body: JSON.stringify(likeObj),
+    }
+
+    fetch('http://localhost:3000/quotes', postReqObj)
+    .then(resp => resp.json())
+    .then(likeObj => {
+        console.log(likeObj)
     })
 }
 
@@ -115,20 +156,50 @@ const imageQuote = () => {
 
 //Set content of elements and appends them to the page
 
-const renderQuotes = (quote, p, h2, likeBtn, numberOfLikes, num) => {
-    console.log(quote);
+const renderQuotes = (quote, likeCount, localQuotes) => {
+
+    const p = document.createElement('p');
     p.textContent = quote.content;
+
+    const h2 = document.createElement('h2');
     h2.textContent = quote.author;
+
+    const likeBtn = document.createElement('button');
     likeBtn.id = "likeBtn";
     likeBtn.textContent = 'Like';
-    numberOfLikes.id = "numLikes";
-    console.log(quote.length);
     likeBtn.addEventListener('click',()=>{
-        num++;
-        numberOfLikes.textContent = '  ' +num + `❤️`;
+        likeCount++;
+        patchLikes(likeCount, quote, localQuotes)
+        numberOfLikes.textContent = '  ' + likeCount + `❤️`;
     })
-    numberOfLikes.textContent = '  '+num +  `❤️`;
+
+    const numberOfLikes = document.createElement('h4');
+    numberOfLikes.id = "numLikes";
+    numberOfLikes.textContent = '  ' + likeCount +  `❤️`;
+
     div.append(h2,p,numberOfLikes,likeBtn);
+}
+
+const patchLikes = (likeCount, quote, localQuotes) => {
+    console.log(quote.id)
+    const quoteIndex = localQuotes.findIndex(localQuote => localQuote.id === quote._id)
+    console.log(localQuotes[quoteIndex].id)
+    const patchReqObj = {
+        method: "PATCH",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({
+            likes: likeCount,
+        }),
+    }
+
+    fetch(`http://localhost:3000/quotes/${localQuotes[quoteIndex].id}`, patchReqObj)
+        .then((response) => response.json())
+        .then((localQArr) => {
+            console.log(localQArr);
+
+    });
 }
 
 //Displays 10 quotes
