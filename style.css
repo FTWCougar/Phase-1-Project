@@ -7,10 +7,12 @@ header {
     font-family: “copperplate”;
     text-align: right;
 }
+
 body {
     background-color: lightpink;
     height: 100%;
 }
+
 #quote-body {
     position: relative;
     top: -850;
@@ -21,6 +23,7 @@ body {
     text-align: center;
     font-size: x-large;
 }
+
 button{
     background-color: lightyellow;
     width:200px;
@@ -28,14 +31,17 @@ button{
     font-family: “”;
     font-weight: bold;
 }
+
 ul{
     list-style: none;
 }
+
 #quote-type {
     overflow: scroll;
     height: 60%;
     width:fit-content;
 }
+
 p {
     padding: 5%;
     background-color: lightskyblue;
@@ -44,28 +50,34 @@ p {
     font-family: “copperplate”, fantasy;
     font-size: x-large;
 }
+
 h2 {
     text-align: center;
     font-family: “Lucida Handwriting”, cursive ;
 }
+
 img{
     max-width: 200px;
     height: auto;
 }
+
 #image {
     float: right;
     position: relative;
-    margin-top: -700px;
+    margin-top: -650px;
 }
+
 #likeBtn{
     text-align: center;
     position: relative;
     background-color: lightcyan;
 }
+
 #numLikes {
     text-align: center;
     position: relative;
 }
+
 @media(max-width: 1000px){
     #quote-body {
         position: relative;
@@ -77,6 +89,7 @@ img{
         text-align: center;
         font-size: x-large;
     }
+    
     #image {
         float: right;
         position: relative;
