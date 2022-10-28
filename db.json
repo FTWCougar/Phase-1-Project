@@ -1,8 +1,20 @@
 {
   "quotes": [
     {
+      "id": "AQpRPKC_9",
+      "likes": 0
+    },
+    {
+      "id": "fCdzog34dlCw",
+      "likes": 0
+    },
+    {
+      "id": "aNfYq5ccGUEL",
+      "likes": 0
+    },
+    {
       "id": "CEURHvpb3u",
-      "likes": 2
+      "likes": 9
     },
     {
       "id": "Z1z6kZ2Qp8",
@@ -41,20 +53,8 @@
       "likes": 0
     },
     {
-      "id": "AQpRPKC_9",
-      "likes": 0
-    },
-    {
-      "id": "fCdzog34dlCw",
-      "likes": 0
-    },
-    {
-      "id": "aNfYq5ccGUEL",
-      "likes": 0
-    },
-    {
       "id": "LQy9bhVL8Gy",
-      "likes": 1
+      "likes": 0
     },
     {
       "id": "6c2h-AtqMj6d",
@@ -63,130 +63,6 @@
     {
       "id": "bG4HRWkKCZ6",
       "likes": 0
-    },
-    {
-      "id": "Ls62KqLuousc",
-      "likes": 0
-    },
-    {
-      "id": "WLeZo2pcwiPB",
-      "likes": 0
-    },
-    {
-      "id": "SP7hRDnqmC0M",
-      "likes": 0
-    },
-    {
-      "id": "weP7hTYV0FLk",
-      "likes": 0
-    },
-    {
-      "id": "MZW3t0KRxWNU",
-      "likes": 0
-    },
-    {
-      "id": "VBlwGGSQRWom",
-      "likes": 0
-    },
-    {
-      "id": "d79yOltfl35h",
-      "likes": 0
-    },
-    {
-      "id": "KMNxDlj3xrMA",
-      "likes": 3
-    },
-    {
-      "id": "0c7pkZG_pgE",
-      "likes": 0
-    },
-    {
-      "id": "nldCX72G-j",
-      "likes": 2
-    },
-    {
-      "id": "pk0ZBkRYXG",
-      "likes": 0
-    },
-    {
-      "id": "ubJ9lY7Ark",
-      "likes": 0
-    },
-    {
-      "id": "y4rjpOn-joW",
-      "likes": 1
-    },
-    {
-      "id": "kJ_kF7p8jpS",
-      "likes": 0
-    },
-    {
-      "id": "RsvD5Ur9kY",
-      "likes": 1
-    },
-    {
-      "id": "ErFK0EPOMHJ",
-      "likes": 0
-    },
-    {
-      "id": "sXhSm0WMZqL",
-      "likes": 0
-    },
-    {
-      "id": "3uAvqPj3dZ",
-      "likes": 0
-    },
-    {
-      "id": "JFgRzbL3Tw",
-      "likes": 0
-    },
-    {
-      "id": "_FwZIOj_Tev",
-      "likes": 0
-    },
-    {
-      "id": "a86E0FlaTY",
-      "likes": 0
-    },
-    {
-      "id": "06AJBdluiw",
-      "likes": 0
-    },
-    {
-      "id": "s2aFAaJuV3",
-      "likes": 0
-    },
-    {
-      "id": "0UycoCApLT",
-      "likes": 0
-    },
-    {
-      "id": "n4cqmf135I",
-      "likes": 0
-    },
-    {
-      "id": "tD2guJsAeO",
-      "likes": 0
-    },
-    {
-      "id": "DNePVvYl4N",
-      "likes": 0
-    },
-    {
-      "id": "kiih3QxK6xf",
-      "likes": 0
-    },
-    {
-      "id": "Umn2bc4TpG",
-      "likes": 0
-    },
-    {
-      "id": "oek95eM62B",
-      "likes": 0
-    },
-    {
-      "id": "cOGCuuIf9q_V",
-      "likes": 1
     },
     {
       "id": "JIk3cbQ8s",
@@ -198,6 +74,62 @@
     },
     {
       "id": "x-0qEVIZ66n",
+      "likes": 0
+    },
+    {
+      "id": "kJ_kF7p8jpS",
+      "likes": 0
+    },
+    {
+      "id": "y4rjpOn-joW",
+      "likes": 0
+    },
+    {
+      "id": "XQKtTxtLnshu",
+      "likes": 0
+    },
+    {
+      "id": "wcJ4LawApuWM",
+      "likes": 0
+    },
+    {
+      "id": "k8oFtw9mQpi",
+      "likes": 0
+    },
+    {
+      "id": "CeKZLrUeWIp",
+      "likes": 0
+    },
+    {
+      "id": "iUBBoBk8rSal",
+      "likes": 0
+    },
+    {
+      "id": "u0V3eW7NMp5T",
+      "likes": 0
+    },
+    {
+      "id": "1SmHkMx6Y4g8",
+      "likes": 0
+    },
+    {
+      "id": "ubJ9lY7Ark",
+      "likes": 0
+    },
+    {
+      "id": "nldCX72G-j",
+      "likes": 0
+    },
+    {
+      "id": "0c7pkZG_pgE",
+      "likes": 0
+    },
+    {
+      "id": "pk0ZBkRYXG",
+      "likes": 0
+    },
+    {
+      "id": "KMNxDlj3xrMA",
       "likes": 0
     }
   ]

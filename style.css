@@ -73,6 +73,15 @@ img{
     background-color: lightcyan;
 }
 
+#deleteBtn{
+    text-align: center;
+    position: relative;
+    background-color: lightcyan;
+    margin: 10px;
+    width:25px;
+    height: 25px;
+}
+
 #numLikes {
     text-align: center;
     position: relative;

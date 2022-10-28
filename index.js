@@ -167,17 +167,29 @@ const renderQuotes = (quote, likeCount, localQuotes) => {
     const likeBtn = document.createElement('button');
     likeBtn.id = "likeBtn";
     likeBtn.textContent = 'Like';
-    likeBtn.addEventListener('click',()=>{
+    likeBtn.addEventListener('click',(e)=>{
         likeCount++;
         patchLikes(likeCount, quote, localQuotes)
+        e.preventDefault()
         numberOfLikes.textContent = '  ' + likeCount + `❤️`;
     })
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'X'
+    deleteBtn.id = 'deleteBtn'
+    deleteBtn.addEventListener('click', () =>{
+        interval = 0;
+        div1.remove()
+    })
+    
     const numberOfLikes = document.createElement('h4');
     numberOfLikes.id = "numLikes";
     numberOfLikes.textContent = '  ' + likeCount +  `❤️`;
 
-    div.append(h2,p,numberOfLikes,likeBtn);
+    const div1 = document.createElement('div')
+    
+    div1.append(deleteBtn, h2, p, numberOfLikes, likeBtn);
+    div.append(div1)
 }
 
 const patchLikes = (likeCount, quote, localQuotes) => {
@@ -193,12 +205,11 @@ const patchLikes = (likeCount, quote, localQuotes) => {
             likes: likeCount,
         }),
     }
-
+    
     fetch(`http://localhost:3000/quotes/${localQuotes[quoteIndex].id}`, patchReqObj)
-        .then((response) => response.json())
-        .then((localQArr) => {
-            console.log(localQArr);
-
+    .then((response) => response.json())
+    .then((localQArr) => {
+        console.log(localQArr);
     });
 }
 
