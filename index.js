@@ -8,31 +8,31 @@ let interval = 0;
 //Fetches to the Database
 
 const fetchQuotes = (tag) => {
-    const fetchreq1 = fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=10`)
+    limit = 10;
+    const fetchreq1 = fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=${limit}`)
     .then(resp => resp.json())
     const fetchreq2 = fetch(`http://localhost:3000/quotes`)
     .then(resp => resp.json())
     const twoDatas = Promise.all([fetchreq1, fetchreq2])
     twoDatas.then(res => {
-        const quoteArr = res[0].results
-        const localQArr = res[1]
-        console.log(quoteArr)
+        const quoteArr = res[0].results;
+        const localQArr = res[1];
         prepareData(quoteArr, localQArr);
     })
 }
 
 const fetchThreeQuotes = (tag) => {
     limit = 3
-    const fetchreq1 = fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=3`)
+    const fetchreq1 = fetch(`https://api.quotable.io/quotes?tags=${tag}&limit=${limit}`)
     .then(resp => resp.json())
     const fetchreq2 = fetch(`http://localhost:3000/quotes`)
     .then(resp => resp.json())
     const twoDatas = Promise.all([fetchreq1, fetchreq2])
     twoDatas.then(res => {
-        const quoteArr = res[0].results
-        const localQArr = res[1]
+        const quoteArr = res[0].results;
+        const localQArr = res[1];
         prepareData(quoteArr, localQArr);
-        limit = 10
+        limit = 10;
     })
 }
 
@@ -43,9 +43,23 @@ const fetchAuthorQuotes = (author) => {
     .then(resp => resp.json())
     const twoDatas = Promise.all([fetchreq1, fetchreq2])
     twoDatas.then(res => {
-        const quoteArr = res[0].results
-        const localQArr = res[1]
-        console.log(quoteArr)
+        const quoteArr = res[0].results;
+        const localQArr = res[1];
+        prepareData(quoteArr, localQArr);
+    })
+}
+
+const fetchPreviewAuthorQuotes = (author) => {
+    limit = 3
+    const fetchreq1 = fetch(`https://api.quotable.io/quotes?author=${author}&limit=${limit}`)
+    .then(resp => resp.json())
+    const fetchreq2 = fetch(`http://localhost:3000/quotes`)
+    .then(resp => resp.json())
+    const twoDatas = Promise.all([fetchreq1, fetchreq2]);
+    twoDatas.then(res => {
+        limit = 10;
+        const quoteArr = res[0].results;
+        const localQArr = res[1];
         prepareData(quoteArr, localQArr);
     })
 }
@@ -57,7 +71,6 @@ const fetchTags = () => {
         console.log(tagArr)
         tagArr.forEach(tag => {
             if(tag.quoteCount !== 0){
-                console.log(tag);
                 createNav(tag);
             };
         }
@@ -73,7 +86,6 @@ const createNav = (tag) => {
     li.append(span);
     btn.textContent = tag.name.toUpperCase();
     createBtnEvents(tag, btn, span);
-    console.log(li);
     span.append(btn);
     navList.append(span);
 
@@ -107,17 +119,15 @@ const createBtnEvents = (tag, btn, span) => {
 const prepareData = (remoteQuotes, localQuotes) => {
     div.textContent = '';
     remoteQuotes.forEach(remoteQuote =>{
-        console.log(remoteQuote)
-        const quoteIndex = localQuotes.findIndex(localQuote => localQuote.id === remoteQuote._id)
+        const quoteIndex = localQuotes.findIndex(localQuote => localQuote.id === remoteQuote._id);
         let likeCount = 0;
         if(quoteIndex === -1){
-            postLikes(likeCount, remoteQuote._id)
+            postLikes(likeCount, remoteQuote._id);
 
         }else{
             likeCount = localQuotes[quoteIndex].likes;
         }
-        console.log(likeCount)
-        renderQuotes(remoteQuote, likeCount, localQuotes)
+        renderQuotes(remoteQuote, likeCount, localQuotes);
     })
 }
 
@@ -138,20 +148,8 @@ const postLikes = (likeCount, quoteId) => {
     fetch('http://localhost:3000/quotes', postReqObj)
     .then(resp => resp.json())
     .then(likeObj => {
-        console.log(likeObj)
+        console.log(likeObj);
     })
-}
-
-//Creates elements for the page
-
-const imageQuote = () => {
-    const img1 = document.getElementById('img1');
-    const img2 = document.getElementById('img2');
-    const img3 = document.getElementById('img3');
-    const img4 = document.getElementById('img4');
-    const img5 = document.getElementById('img5');
-    let author = "";
-    picClicked(author, img1, img2, img3, img4, img5);
 }
 
 //Set content of elements and appends them to the page
@@ -169,33 +167,31 @@ const renderQuotes = (quote, likeCount, localQuotes) => {
     likeBtn.textContent = 'Like';
     likeBtn.addEventListener('click',(e)=>{
         likeCount++;
-        patchLikes(likeCount, quote, localQuotes)
-        e.preventDefault()
+        patchLikes(likeCount, quote, localQuotes);
+        e.preventDefault();
         numberOfLikes.textContent = '  ' + likeCount + `❤️`;
     })
 
     const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'X'
-    deleteBtn.id = 'deleteBtn'
+    deleteBtn.textContent = 'X';
+    deleteBtn.id = 'deleteBtn';
     deleteBtn.addEventListener('click', () =>{
         interval = 0;
-        div1.remove()
+        div1.remove();
     })
     
     const numberOfLikes = document.createElement('h4');
     numberOfLikes.id = "numLikes";
     numberOfLikes.textContent = '  ' + likeCount +  `❤️`;
 
-    const div1 = document.createElement('div')
+    const div1 = document.createElement('div');
     
     div1.append(deleteBtn, h2, p, numberOfLikes, likeBtn);
-    div.append(div1)
+    div.append(div1);
 }
 
 const patchLikes = (likeCount, quote, localQuotes) => {
-    console.log(quote.id)
-    const quoteIndex = localQuotes.findIndex(localQuote => localQuote.id === quote._id)
-    console.log(localQuotes[quoteIndex].id)
+    const quoteIndex = localQuotes.findIndex(localQuote => localQuote.id === quote._id);
     const patchReqObj = {
         method: "PATCH",
         headers: {
@@ -216,7 +212,6 @@ const patchLikes = (likeCount, quote, localQuotes) => {
 //Displays 10 quotes
 
 const displayQuotes = (btn) => {
-    console.log(btn.textContent);
     const tag = btn.textContent;
     fetchQuotes(tag);
 }
@@ -224,43 +219,49 @@ const displayQuotes = (btn) => {
 //Shows a preview of quotes 
 
 const previewQuotes = (btn) => {
-    console.log(btn.textContent);
     const tag = btn.textContent;
     fetchThreeQuotes(tag);
 }
 
 //Determines when a picture is clicked
 
-const picClicked = (author, img1, img2, img3, img4, img5) => {
-    img1.addEventListener('click', () => {
-        author = "Alan-Watts";
-        fetchAuthorQuotes(author);
+const picEvents = () => {
+    const img1 = document.getElementById('img1');
+    const img2 = document.getElementById('img2');
+    const img3 = document.getElementById('img3');
+    const img4 = document.getElementById('img4');
+    const img5 = document.getElementById('img5');
+    const imgArr = [img1, img2, img3, img4, img5];
+    let author = '';
+
+    imgArr.forEach(img =>{
+        img.addEventListener('click', () => {
+            interval++;
+            author = img.alt;
+            fetchAuthorQuotes(author);
+        })
+        img.addEventListener('mouseover', () => {
+            author = img.alt;
+            fetchPreviewAuthorQuotes(author);
+        })
+        img.addEventListener('mouseout', () => {
+            if (interval !== 1){
+                div.textContent ='';
+            }else{
+                interval = 0;;
+            }
+        })
     })
-    img2.addEventListener('click', () => {
-        author = "Margaret-Mead";
-        fetchAuthorQuotes(author);
-    })
-    img3.addEventListener('click', () => {
-        author = "Michael-Jordan";
-        fetchAuthorQuotes(author);
-    })
-    img4.addEventListener('click', () => {
-        author = "Winston-Churchill";
-        fetchAuthorQuotes(author);
-    })
-    img5.addEventListener('click', () => {
-        author = "Albert-Einstein";
-        fetchAuthorQuotes(author);
-    })
+    
 }
 
 //Starts the necessary functions
 
 const init = () => {
     fetchTags();
-    imageQuote();
+    picEvents();
 }
 
 //Starts the page
 
-init()
+init();
