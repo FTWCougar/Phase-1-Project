@@ -185,6 +185,7 @@ const renderQuotes = (quote, likeCount, localQuotes) => {
     numberOfLikes.textContent = '  ' + likeCount +  `❤️`;
 
     const div1 = document.createElement('div');
+    div1.id = "eachQuoteBody"
     
     div1.append(deleteBtn, h2, p, numberOfLikes, likeBtn);
     div.append(div1);

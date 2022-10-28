@@ -87,6 +87,13 @@ img{
     position: relative;
 }
 
+#eachQuoteBody{
+    border-radius: 10%;
+    background-color: white;
+    margin: 25px;
+    padding: 10px;
+}
+
 @media(max-width: 1000px){
     #quote-body {
         position: relative;
