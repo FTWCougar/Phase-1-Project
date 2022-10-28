@@ -44,6 +44,8 @@ ul{
 
 p {
     padding: 5%;
+    margin-left: 5% ;
+    margin-right: 5% ;
     background-color: lightskyblue;
     text-align: center;
     border-radius: 50%;
